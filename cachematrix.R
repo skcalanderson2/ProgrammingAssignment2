@@ -1,5 +1,5 @@
 ## These functions work together to calculate the inverse of a matrix
-## but they do it by caching calculations so they do not have to be recalculated
+## but they do it by caching previous inverse calculations so they do not have to be recalculated
 ## thereby increasing performance
 ## 
 ## Example Use:
@@ -12,7 +12,9 @@
 ## [1,] 1.0666667 0.2666667
 ## [2,] 0.2666667 1.0666667
 
-## This function creates a special matrix that caches our inverse function
+## This function creates a special matrix 
+## It also allows our inverse calcuations to be saved
+## and it allows the calculations to be retrieved
 
 makeCacheMatrix <- function(x = matrix()) {
   i <- NULL
@@ -30,6 +32,8 @@ makeCacheMatrix <- function(x = matrix()) {
 
 
 ## This function uses our special matrix to calculate the inverse of our matrix
+## It checks to see if the inverse has already been calculated,
+## if so it just retrieves it, otherwise it calculates it then saves it.
 
 cacheSolve <- function(x, ...) {
   i <- x$getinverse()
